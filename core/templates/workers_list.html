@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% block content %}
+<main>
+    <div class="text-center display-4 mb-4">Таблица сотрудников</div>
+    <table class="table">
+        <thead class="table-primary">
+        <tr>
+            <th>№</th>
+            <th>ФИО</th>
+            <th>Должность</th>
+            <th>Телефон</th>
+            <th>Удалить</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for worker in workers %}
+        <tr>
+            <th>{{ worker.0 }}</th>
+            <td>{{ worker.1.last_name }} {{ worker.1.name }} {{ worker.1.patronymic }}</td>
+            <td>{{ worker.1.job }}</td>
+            <td>{{ worker.1.phone_number }}</td>
+            <td><a href="{% url 'delete_worker' worker.1.id %}">Удалить</a></td>
+        </tr>
+        {% endfor %}
+        </tbody>
+
+    </table>
+</main>
+{% endblock content %}
